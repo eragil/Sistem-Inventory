@@ -26,11 +26,10 @@ COPY . .
 # Install dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-dev
 
-# Permissions (penting utk Laravel)
+# Permissions (penting untuk Laravel)
 RUN chmod -R 775 storage bootstrap/cache
 
-# Expose default port (optional)
 EXPOSE 8000
 
-# Start Laravel with Railway PORT
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=${PORT}"]
+# 🔥 FIX: gunakan shell form sehingga $PORT tidak kosong
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
