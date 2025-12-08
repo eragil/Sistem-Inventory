@@ -26,11 +26,11 @@ COPY . .
 # Install dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-dev
 
-# Storage & cache permissions
+# Permissions (penting utk Laravel)
 RUN chmod -R 775 storage bootstrap/cache
 
-# Expose default Laravel port (optional)
+# Expose default port (optional)
 EXPOSE 8000
 
-# Run Laravel using dynamic hosting port
-CMD php artisan serve --host=0.0.0.0 --port=${PORT}
+# Start Laravel with Railway PORT
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=${PORT}"]
