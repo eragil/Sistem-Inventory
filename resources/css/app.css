@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;
+
+/* Project-wide system color overrides — keep UI consistent with "DD Knalpot Racing" */
+:root{
+	--system-accent: #16a34a; /* primary green used in login */
+	--system-accent-2: #10b981;
+}
+
+/* Override common Tailwind "blue" utilities to use the system accent.
+	 This keeps vendor views and existing templates visually consistent
+	 without editing many files. Use !important to ensure these rules win
+	 after Tailwind's generated utilities. */
+.text-blue-600{color:var(--system-accent) !important}
+.text-blue-700{color:var(--system-accent-2) !important}
+.text-blue-900{color:var(--system-accent) !important}
+.hover\:text-blue-900:hover{color:var(--system-accent-2) !important}
+.hover\:text-blue-600:hover{color:var(--system-accent) !important}
+.bg-blue-500{background-color:var(--system-accent) !important}
+.hover\:bg-blue-500:hover{background-color:var(--system-accent-2) !important}
+.border-blue-500{border-color:var(--system-accent) !important}
+.focus\:border-blue-300:focus{border-color:var(--system-accent-2) !important}
+.hover\:border-blue-300:hover{border-color:var(--system-accent-2) !important}
+
+/* Links and buttons using .text-blue or .btn-primary from older CSS */
+a.text-blue, a.text-blue-600, a.text-blue-700{color:var(--system-accent) !important}
+.btn-primary, .btn-primary:hover{background-color:var(--system-accent) !important;border-color:var(--system-accent) !important}
+
+/* Safety: map some utility classes from vendor packages that use blue shades */
+.text-blue-500{color:var(--system-accent) !important}
+.text-blue-400{color:var(--system-accent) !important}
+.bg-blue-600{background-color:var(--system-accent-2) !important}
+
+/* End of overrides */
