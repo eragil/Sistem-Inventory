@@ -26,10 +26,14 @@ COPY . .
 # Install dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-dev
 
-# Permissions (penting untuk Laravel)
+# Permissions
 RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8000
 
-# 🔥 FIX: gunakan shell form sehingga $PORT tidak kosong
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Jalankan entrypoint (migrate + seed + artisan serve)
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
