@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('ukuran');
             $table->string('foto');
             $table->date('tanggal_masuk');
-            $table->string('harga')->nullable();
             $table->timestamps();
         });
     }
